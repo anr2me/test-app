@@ -14,7 +14,7 @@ const CurrencyNames = {
 	'EUR':'Euro'
 }
 
-class Store {
+class localDB {
 	
 	addItem(name,data){
 		localStorage.setItem(name,JSON.stringify(data));
@@ -34,6 +34,6 @@ class Store {
 	}
 }
 
-export default Store;
+export default localDB;
 
 export { CurrencyNames, uniqueId };

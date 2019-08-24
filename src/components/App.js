@@ -1,38 +1,57 @@
 import React, { Component } from 'react';
-import { Container } from 'semantic-ui-react';
-import './App.css';
 import { connect } from 'react-redux';
-import actions from './../redux/actions';
+import { Container, Segment, Label, Input, Divider } from 'semantic-ui-react';
+import { CurrencyNames } from './../Utils';
+import { setBaseAmount } from './../redux/actions';
 import CurrencyList from './CurrencyList';
+import AddMoreCurrency from './AddMoreCurrency';
+import './App.css';
 
 
 class App extends Component{
+
+  // Save Form data in local state
+  handleChange = (e, { name, value }) => {
+    this.setState({ [name]: value });
+    console.log('AppThisState: ',this.state);
+    console.log('AppThisProps: ',this.props);
+    const { baseAmount } = {...this.props, ...this.state};
+    return setBaseAmount(parseFloat(baseAmount));
+  }
 	
 	render() {
-		const {itemList} = this.props;
+		const {itemList, baseCurrency, baseAmount, dispatch} = {...this.props, ...this.state};
 		return (
-			<Container>
-				<CurrencyList itemList={itemList} />
+			<Container textAlign="center">
+        <Segment className="app_wrapper" textAlign="left">
+          <Label size="small">
+            {baseCurrency} - {CurrencyNames[baseCurrency]}
+          </Label>
+          <Input name="baseAmount" className="base_amount" fluid labelPosition="left" type="text" placeholder="Amount" value={baseAmount} onChange={(e, pair)=>dispatch(this.handleChange(e, pair))}>
+            <Label basic>{baseCurrency}</Label>
+              <input />
+          </Input>
+          <Divider />
+
+				  <CurrencyList itemList={itemList} />
+
+          <Segment>
+            <AddMoreCurrency />
+          </Segment>
+        </Segment>
 			</Container>
 		)	
 	}
 }
 
-const mapStateToProps = state => {
-	console.log('State: ',state);
+const mapStateToProps = ({ itemList, baseCurrency, baseAmount })  => {
+	//console.log('State: ',state);
   return {
-    itemList: state.itemList
+    itemList,
+    baseCurrency,
+    baseAmount
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    updateAll: () =>
-      dispatch({
-        type: actions.UPDATE_ALL,
-      })
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, null)(App)
 

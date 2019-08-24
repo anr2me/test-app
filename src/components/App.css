@@ -31,3 +31,21 @@
     transform: rotate(360deg);
   }
 }
+
+.ui.label{
+  background-color: initial;
+}
+.ui.small.label{
+  font-style: italic;
+}
+
+.ui.segment.app_wrapper{
+  width:100%;
+  max-width:480px;
+  border:1px solid gray;
+  margin:1em auto;
+}
+
+.ui.input.base_amount>input{
+  text-align: right;
+}
