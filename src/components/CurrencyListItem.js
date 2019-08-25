@@ -19,17 +19,17 @@ class CurrencyListItem extends Component {
 								<Grid.Column textAlign="left">
 									<Grid columns="equal">
 										<Grid.Column textAlign="left" width="4">
-											<Label>{item.sym}</Label>
+											<Label size="large">{item.sym}</Label>
 										</Grid.Column>
 										<Grid.Column textAlign="right" >
-											<Label className="cur_amount">{Number(parseFloat(baseAmount * item.exrate).toFixed(item.decimals)).toLocaleString('default',{minimumFractionDigits:item.decimals,maximumFractionDigits:item.decimals})}</Label>
+											<Label className="cur_amount" size="large">{Number(parseFloat(baseAmount * item.exrate).toFixed(item.decimals)).toLocaleString('default',{minimumFractionDigits:item.decimals,maximumFractionDigits:item.decimals})}</Label>
 										</Grid.Column>
 									</Grid>
 									<Label size="small">{item.sym} - {CurrencyNames[item.sym]}</Label>
 									<Label size="small">1 {baseCurrency} = {item.sym} {Number(parseFloat(item.exrate).toFixed(item.decimals)).toLocaleString('default',{minimumFractionDigits:item.decimals,maximumFractionDigits:item.decimals})}</Label>
 								</Grid.Column>
-								<Grid.Column width={4}>
-									<Button floated="right" onClick={() => remItem(item.id)}> (-) </Button>
+								<Grid.Column width={4} textAlign="center">
+									<Button floated="right" onClick={() => remItem(item.id)} icon={{name:"times circle", size:"big"}} color="red" />
 								</Grid.Column>
 							</Grid.Row>
 						</Grid>

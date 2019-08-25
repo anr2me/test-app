@@ -36,30 +36,32 @@ class AddMoreCurrency extends Component{
         // Get DropDown value
         const { currency } = this.state;
         // Reset Form values
-        this.setState({ currency:'' });
         this.toggleAddMore();
-        return addItem((currency).toUpperCase());
+        this.setState({ currency:'' });
+        if (currency!=="") {
+            this.props.dispatch(addItem((currency).toUpperCase()));
+        }
     }
 
 	render() {
         console.log('CurThisState: ',this.state);
         console.log('CurThisProps: ',this.props);
         const {currency, showAddMore} = this.state;
-        const {dispatch} = this.props;
+        
 		if(showAddMore){
             return(
-                <Button fluid onClick={this.toggleAddMore}>(+) Add More Currencies</Button>                
+                <Button fluid onClick={this.toggleAddMore} icon={{name:"plus circle", size:"large"}} labelPosition='left' color="green" content="Add More Currencies" />              
             );
         }
      
         return(
-            <Form onSubmit={(e)=>dispatch(this.handleSubmit(e))}>
+            <Form onSubmit={this.handleSubmit}>
                 <Form.Group widths="equal">
                     <Form.Field>
-                        <Dropdown name='currency' ref="currency" placeholder='Currency' value={currency} fluid search selection options={this.state.currencyOptions} onChange={this.handleChange} />
+                        <Dropdown className="select_currency" name='currency' ref="currency" placeholder='Currency' value={currency} fluid search selection options={this.state.currencyOptions} onChange={this.handleChange} />
                     </Form.Field>
                     <Form.Field width={4}>
-                        <Button floated="right" type="submit" content="Submit" />
+                        <Button floated="right" type="submit" content="Submit" color="blue" />
                     </Form.Field>
                 </Form.Group>
             </Form>

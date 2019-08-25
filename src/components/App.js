@@ -24,25 +24,25 @@ class App extends Component{
     this.setState({ [name]: value });
     console.log('AppThisState: ',this.state,' / ',{[name]:value});
     console.log('AppThisProps: ',this.props);
-    // since setSate is async we shouldn't count on it's value immediately
+    // since setState is async we shouldn't use it's value immediately
     const { baseAmount } = {...this.state, [name]:value };
-    return setBaseAmount(parseFloat(baseAmount));
+    this.props.dispatch(setBaseAmount(parseFloat(baseAmount)));
   }
 
   handleBlur = (e) => {
     console.log('CurThisOnBlurState: ',this.state,' / e: ',e,' CurThisOnBlurProps: ',this.props);
-    this.setState({baseAmount: parseFloat(this.state.baseAmount || this.props.baseAmount).toFixed(4)});
+    this.setState({baseAmount: parseFloat(this.props.baseAmount).toFixed(4)});
   }
 	
 	render() {
-		const {itemList, baseCurrency, dispatch} = this.props;
+		const {itemList, baseCurrency} = this.props;
 		return (
 			<Container textAlign="center">
         <Segment className="app_wrapper" textAlign="left">
           <Label size="small">
             {baseCurrency} - {CurrencyNames[baseCurrency]}
           </Label>
-          <Input className="base_amount" name="baseAmount" ref="baseAmount" fluid labelPosition="left" type="text" placeholder="Amount" value={this.state.baseAmount || this.props.baseAmount} onChange={(e, pair)=>dispatch(this.handleChange(e, pair))} onBlur={(e)=>this.handleBlur(e)}>
+          <Input className="base_amount" name="baseAmount" ref="baseAmount" fluid labelPosition="left" size="large" type="text" placeholder="Amount" value={this.state.baseAmount || this.props.baseAmount} onChange={this.handleChange} onBlur={this.handleBlur}>
             <Label basic>{baseCurrency}</Label>
               <input />
           </Input>
@@ -60,7 +60,6 @@ class App extends Component{
 }
 
 const mapStateToProps = ({ itemList, baseCurrency, baseAmount })  => {
-	//console.log('State: ',state);
   return {
     itemList,
     baseCurrency,
