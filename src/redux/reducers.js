@@ -27,9 +27,9 @@ let reducers = (state = initialState, action) => {
 		case actions.NEED_FETCH:
 			return {...state, needFetch:action.needFetch};
 		case actions.FETCH_EXRATES_PENDING:
-			return {...state, fetchPending:true, needFetch:false, fetchRetry:0};
+			return {...state, fetchPending:true, needFetch:false};
 		case actions.FETCH_EXRATES_SUCCESS:
-			return {...state, fetchPending:false, needFetch:false,
+			return {...state, fetchPending:false, needFetch:false, fetchRetry:0,
 				itemList: state.itemList.map((obj)=>{
 					let newObj = Object.assign({},obj);
 					newObj.exrate = parseFloat(action.data[obj.sym]);
@@ -37,7 +37,7 @@ let reducers = (state = initialState, action) => {
 					return newObj;
 				})};
 		case actions.FETCH_EXRATES_ERROR:
-			return {...state, fetchPending:false, fetchRetry:(state.fetchRetry+1), needFetch:(state.fetchRetry<3), fetchError:action.error};
+			return {...state, fetchPending:false, fetchRetry:(state.fetchRetry+1), needFetch:(state.fetchRetry<2), fetchError:action.error};
 		default:      
 			return state;  
 	}
