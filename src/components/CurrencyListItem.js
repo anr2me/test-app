@@ -28,7 +28,7 @@ class CurrencyListItem extends Component {
 									<Label size="small">{item.sym} - {CurrencyNames[item.sym]}</Label>
 									<Label size="small">1 {baseCurrency} = {item.sym} {Number(parseFloat(item.exrate).toFixed(item.decimals)).toLocaleString('default',{minimumFractionDigits:item.decimals,maximumFractionDigits:item.decimals})}</Label>
 								</Grid.Column>
-								<Grid.Column width={4} textAlign="center">
+								<Grid.Column width={6} textAlign="center">
 									<Button floated="right" onClick={() => remItem(item.id)} icon={{name:"times circle", size:"big"}} negative />
 								</Grid.Column>
 							</Grid.Row>
