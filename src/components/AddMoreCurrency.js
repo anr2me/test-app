@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Button, Dropdown, Form } from 'semantic-ui-react';
 import { CurrencyNames } from './../Utils';
 import { addItem } from './../redux/actions';
-import fetchExrates from './../services/httpService';
 import './AddMoreCurrency.css';
 
 class AddMoreCurrency extends Component{
@@ -45,7 +44,8 @@ class AddMoreCurrency extends Component{
 	render() {
         console.log('CurThisState: ',this.state);
         console.log('CurThisProps: ',this.props);
-        const {currency, showAddMore, currencyOptions, dispatch} = {...this.props, ...this.state};
+        const {currency, showAddMore} = this.state;
+        const {dispatch} = this.props;
 		if(showAddMore){
             return(
                 <Button fluid onClick={this.toggleAddMore}>(+) Add More Currencies</Button>                
@@ -56,7 +56,7 @@ class AddMoreCurrency extends Component{
             <Form onSubmit={(e)=>dispatch(this.handleSubmit(e))}>
                 <Form.Group widths="equal">
                     <Form.Field>
-                        <Dropdown name='currency' placeholder='Currency' value={currency} fluid search selection options={currencyOptions} onChange={this.handleChange} />
+                        <Dropdown name='currency' ref="currency" placeholder='Currency' value={currency} fluid search selection options={this.state.currencyOptions} onChange={this.handleChange} />
                     </Form.Field>
                     <Form.Field width={4}>
                         <Button floated="right" type="submit" content="Submit" />

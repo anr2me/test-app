@@ -3,46 +3,41 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { List, Dimmer, Loader } from 'semantic-ui-react'
 import { remItem } from './../redux/actions';
-import { getExrates, getExratesPending, getExratesError } from './../redux/reducers';
-import fetchExrates from './../services/httpService';
+import { getNeedFetch, getExrates, getExratesPending, getExratesError } from './../redux/reducers';
+import  fetchExrates from './../services/httpService';
 import CurrencyListItem from './CurrencyListItem';
 import './CurrencyList.css';
 
 
 class CurrencyList extends Component{
 
-	constructor(props) {
-        super(props);
-
-        this.shouldComponentRender = this.shouldComponentRender.bind(this);
-    }
-
-	componentWillMount() {
-		console.log('ListThisPropsWillMount: ',this.props);
+	componentDidMount() {
+		console.log('ListThisPropsDidMount: ',this.props);
 		const {fetchExrates, baseCurrency, itemList} = this.props;
 		fetchExrates(baseCurrency, itemList.map((item)=>{return item.sym}).join(','));
 	}
-
-	shouldComponentRender() {
-		const {fetchPending} = this.props;
-		console.log('ListThisPending2: ',fetchPending);
-		if(fetchPending !== true) return false;
-		
-        return true;
-    }
+	
+	componentDidUpdate(prevProps, prevState, snapshot) {
+		console.log('ListThisPropsDidUpdate: ',this.props, ' PrevProps: ',prevProps);
+		const {fetchExrates, baseCurrency, itemList, needFetch} = this.props;
+		if (needFetch === true)
+		{
+			fetchExrates(baseCurrency, itemList.map((item)=>{return item.sym}).join(','));
+		}
+	}
 
 	render() {
 		console.log('ListThisProps: ',this.props);
-		const {itemList, baseCurrency, baseAmount} = this.props;
+		const {itemList, baseCurrency, baseAmount, fetchPending} = this.props;
 
-		/*if (!this.shouldComponentRender()) {
-			console.log('ListThisPending: ',this.props.fetchPending);
+		if (fetchPending) {
+			console.log('ListThisPending: ',fetchPending);
 			return (
 				<Dimmer active inverted>
 					<Loader size='large'>Loading</Loader>
 				</Dimmer>
 			);
-		}*/
+		}
 		
 		return (
 			<List>
@@ -58,12 +53,13 @@ const mapStateToProps = (state) => {
 	baseAmount: state.baseAmount,
 	itemList: getExrates(state),
 	fetchError: getExratesError(state),
-    fetchPending: getExratesPending(state)
+	fetchPending: getExratesPending(state),
+	needFetch: getNeedFetch(state),
   }
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    fetchExrates
+	fetchExrates,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(CurrencyList)

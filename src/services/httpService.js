@@ -1,7 +1,8 @@
-import { fetchExratesPending, fetchExratesSuccess, fetchExratesError } from './../redux/actions';
+import { fetchExratesPending, fetchExratesSuccess, fetchExratesError, setNeedFetch } from './../redux/actions';
 
-function fetchExrates(baseCurrency, symbols){
+export default function fetchExrates(baseCurrency, symbols){
 		return dispatch => {
+			console.log('Fetching!!');
 			dispatch(fetchExratesPending());
 			fetch('https://api.exchangeratesapi.io/latest?base='+baseCurrency+'&symbols='+symbols)
 			.then(res => res.json())
@@ -18,6 +19,6 @@ function fetchExrates(baseCurrency, symbols){
 		}
 }
 
+export function triggerFetch(needFetch) { return dispatch => { console.log('triggerFetch!!'); dispatch(setNeedFetch(needFetch)) } };
 
-export default fetchExrates;
 
