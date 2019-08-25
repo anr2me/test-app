@@ -14,13 +14,14 @@ class CurrencyList extends Component{
 	componentDidMount() {
 		console.log('ListThisPropsDidMount: ',this.props);
 		const {fetchExrates, baseCurrency, itemList} = this.props;
+		// Initial fetching
 		fetchExrates(baseCurrency, itemList.map((item)=>{return item.sym}).join(','));
 	}
 	
 	componentDidUpdate(prevProps, prevState, snapshot) {
 		console.log('ListThisPropsDidUpdate: ',this.props, ' PrevProps: ',prevProps);
 		const {fetchExrates, baseCurrency, itemList, needFetch} = this.props;
-		if (needFetch === true)
+		if (needFetch === true && prevProps.needFetch === false)
 		{
 			fetchExrates(baseCurrency, itemList.map((item)=>{return item.sym}).join(','));
 		}

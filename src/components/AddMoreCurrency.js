@@ -32,13 +32,13 @@ class AddMoreCurrency extends Component{
     handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
     handleSubmit = (e) => {
-        console.log('CurThisState3: ',this.state,' / e: ',e);
+        console.log('CurThisOnSubmit: ',this.state,' / e: ',e);
         // Get DropDown value
         const { currency } = this.state;
         // Reset Form values
         this.setState({ currency:'' });
         this.toggleAddMore();
-        return addItem(currency);
+        return addItem((currency).toUpperCase());
     }
 
 	render() {

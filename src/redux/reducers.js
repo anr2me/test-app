@@ -33,7 +33,7 @@ let reducers = (state = initialState, action) => {
 				itemList: state.itemList.map((obj)=>{
 					let newObj = Object.assign({},obj);
 					newObj.exrate = parseFloat(action.data[obj.sym]);
-					newObj.decimals = (newObj.exrate>=1000?2:4);
+					newObj.decimals = (newObj.exrate>=100.0?2:4);
 					return newObj;
 				})};
 		case actions.FETCH_EXRATES_ERROR:
