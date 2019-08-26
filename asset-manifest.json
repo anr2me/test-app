@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/test-app/static/css/main.dc0f8336.chunk.css",
+    "main.js": "/test-app/static/js/main.40e04233.chunk.js",
+    "main.js.map": "/test-app/static/js/main.40e04233.chunk.js.map",
+    "runtime~main.js": "/test-app/static/js/runtime~main.3e334fdd.js",
+    "runtime~main.js.map": "/test-app/static/js/runtime~main.3e334fdd.js.map",
+    "static/css/2.a2c74b43.chunk.css": "/test-app/static/css/2.a2c74b43.chunk.css",
+    "static/js/2.630aef1e.chunk.js": "/test-app/static/js/2.630aef1e.chunk.js",
+    "static/js/2.630aef1e.chunk.js.map": "/test-app/static/js/2.630aef1e.chunk.js.map",
+    "index.html": "/test-app/index.html",
+    "precache-manifest.7355bf4fe2f91daf3d485ccdc9c18fa3.js": "/test-app/precache-manifest.7355bf4fe2f91daf3d485ccdc9c18fa3.js",
+    "service-worker.js": "/test-app/service-worker.js",
+    "static/css/2.a2c74b43.chunk.css.map": "/test-app/static/css/2.a2c74b43.chunk.css.map",
+    "static/css/main.dc0f8336.chunk.css.map": "/test-app/static/css/main.dc0f8336.chunk.css.map",
+    "static/media/semantic.min.css": "/test-app/static/media/outline-icons.ef60a4f6.woff"
+  }
+}
