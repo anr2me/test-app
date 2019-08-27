@@ -18,7 +18,7 @@ class CurrencyListItem extends Component {
 							<Grid.Row stretched>
 								<Grid.Column textAlign="left">
 									<Grid columns="equal">
-										<Grid.Column textAlign="left" width="4">
+										<Grid.Column textAlign="left" width={4}>
 											<Label size="large">{item.sym}</Label>
 										</Grid.Column>
 										<Grid.Column textAlign="right" >
@@ -28,7 +28,7 @@ class CurrencyListItem extends Component {
 									<Label size="small">{item.sym} - {CurrencyNames[item.sym]}</Label>
 									<Label size="small">1 {baseCurrency} = {item.sym} {Number(parseFloat(item.exrate).toFixed(item.decimals)).toLocaleString('default',{minimumFractionDigits:item.decimals,maximumFractionDigits:item.decimals})}</Label>
 								</Grid.Column>
-								<Grid.Column width={6} textAlign="center">
+								<Grid.Column textAlign="center" mobile={6} computer={4}>
 									<Button floated="right" onClick={() => remItem(item.id)} icon={{name:"times circle", size:"big"}} negative />
 								</Grid.Column>
 							</Grid.Row>
