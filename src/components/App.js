@@ -36,24 +36,24 @@ class App extends Component{
 	
 	render() {
 		const {itemList, baseCurrency} = this.props;
-		return (
+		return (			
 			<Container textAlign="center">
-        <Segment className="app_wrapper" textAlign="left">
-          <Label size="small">
-            {baseCurrency} - {CurrencyNames[baseCurrency]}
-          </Label>
-          <Input className="base_amount" name="baseAmount" ref="baseAmount" fluid labelPosition="left" size="large" type="text" placeholder="Amount" value={this.state.baseAmount || this.props.baseAmount} onChange={this.handleChange} onBlur={this.handleBlur}>
-            <Label basic>{baseCurrency}</Label>
-              <input />
-          </Input>
-          <Divider />
+				<Segment className="app_wrapper" textAlign="left">
+				  <Label size="small">
+					{baseCurrency} - {CurrencyNames[baseCurrency]}
+				  </Label>
+				  <Input className="base_amount" name="baseAmount" ref="baseAmount" fluid labelPosition="left" size="large" type="text" placeholder="Amount" value={this.state.baseAmount || this.props.baseAmount} onChange={this.handleChange} onBlur={this.handleBlur}>
+					<Label basic>{baseCurrency}</Label>
+					<input />
+				  </Input>
+				  <Divider />
 
-				  <CurrencyList itemList={itemList} />
+					<CurrencyList itemList={itemList} />
 
-          <Segment>
-            <AddMoreCurrency />
-          </Segment>
-        </Segment>
+				  <Segment>
+					<AddMoreCurrency />
+				  </Segment>
+				</Segment>
 			</Container>
 		)	
 	}
