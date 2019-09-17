@@ -44,8 +44,11 @@ let reducers = (state = initialState, action) => {
 }
 
 export default reducers;
-export { initialState };
-export const getNeedFetch = state => state.needFetch;
-export const getExrates = state => state.itemList;
-export const getExratesPending = state => state.fetchPending;
-export const getExratesError = state => state.fetchError;
+
+export const getBaseCurrency = state => state.reducers.baseCurrency;
+export const getBaseAmount = state => state.reducers.baseAmount;
+export const getItemList = state => state.reducers.itemList;
+
+export const getNeedFetch = state => state.reducers.needFetch;
+export const getFetchPending = state => state.reducers.fetchPending;
+export const getFetchError = state => state.reducers.fetchError;

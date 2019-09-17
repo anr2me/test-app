@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { List, Dimmer, Loader } from 'semantic-ui-react'
+import { List, Dimmer, Loader, Dropdown } from 'semantic-ui-react'
 import { remItem } from './../redux/actions';
-import { getNeedFetch, getExrates, getExratesPending, getExratesError } from './../redux/reducers';
+import { getBaseAmount, getBaseCurrency, getNeedFetch, getItemList, getFetchPending, getFetchError } from './../redux/reducers';
 import  fetchExrates from './../services/httpService';
 import CurrencyListItem from './CurrencyListItem';
-import './CurrencyList.css';
-
+import { getThemeId } from '../redux/themeReducer';
 
 class CurrencyList extends Component{
 
@@ -42,13 +41,13 @@ class CurrencyList extends Component{
 
 	render() {
 		console.log('ListThisProps: ',this.props);
-		const {itemList, baseCurrency, baseAmount, fetchPending} = this.props;
+		const {itemList, baseCurrency, baseAmount, fetchPending, themeId} = this.props;
 
 		if (fetchPending) {
 			console.log('ListThisPending: ',fetchPending);
 			return (
-				<Dimmer active inverted>
-					<Loader size='large'>Loading</Loader>
+				<Dimmer className="fetch_dimmer" active inverted={themeId===1?false:true}>
+					<Loader className="fetch_loader" size='large'>Loading</Loader>
 				</Dimmer>
 			);
 		}
@@ -63,12 +62,13 @@ class CurrencyList extends Component{
 
 const mapStateToProps = (state) => {
   return {
-    baseCurrency: state.baseCurrency,
-	baseAmount: state.baseAmount,
-	itemList: getExrates(state),
-	fetchError: getExratesError(state),
-	fetchPending: getExratesPending(state),
+    baseCurrency: getBaseCurrency(state),
+	baseAmount: getBaseAmount(state),
+	itemList: getItemList(state),
+	fetchError: getFetchError(state),
+	fetchPending: getFetchPending(state),
 	needFetch: getNeedFetch(state),
+	themeId: getThemeId(state),
   }
 }
 

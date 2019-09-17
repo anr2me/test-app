@@ -1,7 +1,26 @@
 import React, { Component } from 'react';
 import { List, Button, Label, Grid, Segment } from 'semantic-ui-react';
 import { CurrencyNames } from './../Utils';
-import './CurrencyListItem.css';
+import styled from 'styled-components';
+
+const StyledSegment = styled(Segment)`
+  &&& {
+    border-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR_FAINT)};
+    background-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR)};
+    color: ${props => (props.theme.PRIMARY_TEXT_COLOR)};
+  }
+`;
+
+const StyledLabel = styled(Label)`
+&&& {
+	background-color: transparent;
+	color: ${props => (props.theme.PRIMARY_TEXT_COLOR)};
+    border-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR_FAINT)};
+  
+    &.small {
+    	font-style: italic;
+	}
+}`;
 
 class CurrencyListItem extends Component {
 
@@ -11,27 +30,27 @@ class CurrencyListItem extends Component {
 		return (
 			<List.Item>
 				<List.Content>
-					<Segment>
+					<StyledSegment>
 						<Grid columns="equal">
 							<Grid.Row stretched>
 								<Grid.Column textAlign="left">
 									<Grid columns="equal">
 										<Grid.Column textAlign="left" width={4}>
-											<Label size="large">{item.sym}</Label>
+											<StyledLabel size="large">{item.sym}</StyledLabel>
 										</Grid.Column>
 										<Grid.Column textAlign="right" >
-											<Label className="cur_amount" size="large">{Number(parseFloat(baseAmount * item.exrate).toFixed(item.decimals)).toLocaleString('default',{minimumFractionDigits:item.decimals,maximumFractionDigits:item.decimals})}</Label>
+											<StyledLabel className="cur_amount" size="large">{Number(parseFloat(baseAmount * item.exrate).toFixed(item.decimals)).toLocaleString('default',{minimumFractionDigits:item.decimals,maximumFractionDigits:item.decimals})}</StyledLabel>
 										</Grid.Column>
 									</Grid>
-									<Label size="small">{item.sym} - {CurrencyNames[item.sym]}</Label>
-									<Label size="small">1 {baseCurrency} = {item.sym} {Number(parseFloat(item.exrate).toFixed(item.decimals)).toLocaleString('default',{minimumFractionDigits:item.decimals,maximumFractionDigits:item.decimals})}</Label>
+									<StyledLabel size="small">{item.sym} - {CurrencyNames[item.sym]}</StyledLabel>
+									<StyledLabel size="small">1 {baseCurrency} = {item.sym} {Number(parseFloat(item.exrate).toFixed(item.decimals)).toLocaleString('default',{minimumFractionDigits:item.decimals,maximumFractionDigits:item.decimals})}</StyledLabel>
 								</Grid.Column>
 								<Grid.Column textAlign="center" mobile={6} computer={4}>
 									<Button floated="right" onClick={()=>onDelete(item.id)} icon={{name:"times circle", size:"big"}} negative />
 								</Grid.Column>
 							</Grid.Row>
 						</Grid>
-					</Segment>
+					</StyledSegment>
 				</List.Content>
 			</List.Item>
 		);
