@@ -59,6 +59,12 @@ const StyledInput = styled(Input)`
       color: ${props => (props.theme.PRIMARY_TEXT_COLOR)};
       border-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR_FAINT)};
     }
+
+    &.error>input{
+      background-color: ${props => (props.theme.ERROR_BACKGROUND_COLOR)};
+      color: ${props => (props.theme.ERROR_TEXT_COLOR)};
+      border-color: ${props => (props.theme.ERROR_BACKGROUND_COLOR_FAINT)};
+    }
   }
 `;
 
