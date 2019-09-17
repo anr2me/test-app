@@ -30,6 +30,12 @@ const StyledDropdown= styled(Dropdown)`
             color: ${props => (props.theme.PRIMARY_TEXT_COLOR_FAINT)};
         }
     }
+
+    &>input.search{
+        background-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR)};
+        color: ${props => (props.theme.PRIMARY_TEXT_COLOR)};
+        border-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR_FAINT)};
+    }
   }
 `;
 
