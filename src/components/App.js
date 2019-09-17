@@ -42,7 +42,7 @@ class App extends Component{
 				  <Label size="small">
 					{baseCurrency} - {CurrencyNames[baseCurrency]}
 				  </Label>
-				  <Input className="base_amount" name="baseAmount" ref="baseAmount" fluid labelPosition="left" size="large" type="text" placeholder="Amount" value={this.state.baseAmount || this.props.baseAmount} onChange={this.handleChange} onBlur={this.handleBlur}>
+				  <Input className="base_amount" name="baseAmount" ref="baseAmount" error={Number.isNaN(parseFloat(this.state.baseAmount))} fluid labelPosition="left" size="large" type="text" placeholder="Amount" value={/*parseFloat(this.props.baseAmount).toFixed(4)*/this.state.baseAmount || this.props.baseAmount} onChange={this.handleChange} onBlur={this.handleBlur}>
 					<Label basic>{baseCurrency}</Label>
 					<input />
 				  </Input>
