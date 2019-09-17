@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { List, Button, Label, Grid, Segment } from 'semantic-ui-react';
 import { CurrencyNames } from './../Utils';
-import { remItem } from './../redux/actions';
 import './CurrencyListItem.css';
 
 class CurrencyListItem extends Component {
 
 	render() {
 		console.log('ItemThisProps: ', this.props);
-		const { item, remItem, baseCurrency, baseAmount } = this.props;
+		const { item, onDelete, baseCurrency, baseAmount } = this.props;
 		return (
 			<List.Item>
 				<List.Content>
@@ -29,7 +27,7 @@ class CurrencyListItem extends Component {
 									<Label size="small">1 {baseCurrency} = {item.sym} {Number(parseFloat(item.exrate).toFixed(item.decimals)).toLocaleString('default',{minimumFractionDigits:item.decimals,maximumFractionDigits:item.decimals})}</Label>
 								</Grid.Column>
 								<Grid.Column textAlign="center" mobile={6} computer={4}>
-									<Button floated="right" onClick={() => remItem(item.id)} icon={{name:"times circle", size:"big"}} negative />
+									<Button floated="right" onClick={()=>onDelete(item.id)} icon={{name:"times circle", size:"big"}} negative />
 								</Grid.Column>
 							</Grid.Row>
 						</Grid>
@@ -40,21 +38,4 @@ class CurrencyListItem extends Component {
 	}
 }
 
-const mapStateToProps = ({ baseCurrency, baseAmount }) => {
-	console.log('ItemThisState2: ', { baseCurrency, baseAmount });
-	return {
-		baseCurrency, 
-		baseAmount
-	}
-}
-
-const mapDispatchToProps = dispatch => {
-	return {
-		remItem: (id) => {
-			console.log('remItem!');
-			dispatch(remItem(id));
-		},
-	}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CurrencyListItem)
+export default CurrencyListItem;

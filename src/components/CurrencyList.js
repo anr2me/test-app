@@ -11,6 +11,18 @@ import './CurrencyList.css';
 
 class CurrencyList extends Component{
 
+	constructor(props) {
+		super(props);
+	
+		this.handleDeleteItem = this.handleDeleteItem.bind(this);
+	}
+
+	handleDeleteItem(id){
+		console.log('ThisProps: ',this.props, ' ID: ',id);
+		this.props.remItem(id);
+	}
+	
+
 	componentDidMount() {
 		console.log('ListThisPropsDidMount: ',this.props);
 		const {fetchExrates, baseCurrency, itemList} = this.props;
@@ -27,6 +39,7 @@ class CurrencyList extends Component{
 		}
 	}
 
+
 	render() {
 		console.log('ListThisProps: ',this.props);
 		const {itemList, baseCurrency, baseAmount, fetchPending} = this.props;
@@ -42,7 +55,7 @@ class CurrencyList extends Component{
 		
 		return (
 			<List>
-				{itemList.map((item) => <CurrencyListItem key={item.id} item={item} remItem={remItem} baseCurrency={baseCurrency} baseAmount={baseAmount} />)}
+				{itemList.map((item) => <CurrencyListItem key={item.id} item={item} onDelete={this.handleDeleteItem} baseCurrency={baseCurrency} baseAmount={baseAmount} />)}
 			</List>
 		);		
 	}
@@ -59,8 +72,10 @@ const mapStateToProps = (state) => {
   }
 }
 
+// Custom dispatch
 const mapDispatchToProps = dispatch => bindActionCreators({
 	fetchExrates,
+	remItem,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(CurrencyList)
