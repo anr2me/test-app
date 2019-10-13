@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Container, Segment, Label, Input, Divider, Checkbox, Grid } from 'semantic-ui-react';
 import { CurrencyNames } from './../Utils';
@@ -8,6 +9,7 @@ import { getTheme, getThemeId } from './../redux/themeReducer';
 import { setThemeId } from '../redux/themeActions';
 import CurrencyList from './CurrencyList';
 import AddMoreCurrency from './AddMoreCurrency';
+import AddMoreButton from './AddMoreButton';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
@@ -136,7 +138,13 @@ class App extends Component{
             <CurrencyList itemList={itemList} />
 
             <StyledSegment>
-              <AddMoreCurrency />
+              <React.Fragment>
+                <Switch>
+                  <Route exact path="/add" component={AddMoreCurrency} />
+                  <Route exact path="/" component={AddMoreButton} />
+                  <Route component={AddMoreButton} />
+                </Switch>
+              </React.Fragment>
             </StyledSegment>
           </StyledSegment>
         </StyledContainer>

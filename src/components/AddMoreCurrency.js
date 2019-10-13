@@ -46,7 +46,6 @@ class AddMoreCurrency extends Component{
 
         // local state
         this.state = {
-            showAddMore: true,
             currency: '',
             currencyOptions: Object.keys(CurrencyNames).map((sym) => {
                 return {
@@ -58,10 +57,6 @@ class AddMoreCurrency extends Component{
         }
     }
 
-    toggleAddMore = () => {
-        this.setState(state => ({ showAddMore: !state.showAddMore }));
-    };
-
     // Save Form data in local state
     handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
@@ -70,25 +65,20 @@ class AddMoreCurrency extends Component{
         // Get DropDown value
         const { currency } = this.state;
         // Reset Form values
-        this.toggleAddMore();
         this.setState({ currency:'' });
         if (currency!=="") {
             this.props.dispatch(addItem((currency).toUpperCase()));
         }
+        //Show AddMore Button
+        this.props.history.push('/');
     }
 
 	render() {
         console.log('CurThisState: ',this.state);
         console.log('CurThisProps: ',this.props);
-        const {currency, showAddMore} = this.state;
+        const {currency} = this.state;
         
-		if(showAddMore){
-            return(
-                <Button fluid onClick={this.toggleAddMore} icon={{name:"plus circle", size:"large"}} labelPosition='left' positive content="Add More Currencies" />              
-            );
-        }
-     
-        return(
+		return(
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group widths="equal">
                     <Form.Field>
