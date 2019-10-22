@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { List, Dimmer, Loader, Dropdown } from 'semantic-ui-react'
+import { List, Dimmer, Loader } from 'semantic-ui-react'
 import { remItem } from './../redux/actions';
 import { getBaseAmount, getBaseCurrency, getNeedFetch, getItemList, getFetchPending, getFetchError } from './../redux/reducers';
 import  fetchExrates from './../services/httpService';

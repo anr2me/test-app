@@ -1,4 +1,4 @@
-import { base, darkTheme, lightTheme, colorOptions } from "./../themes";
+import { base, darkTheme, lightTheme } from "./../themes";
 import themeActions from './themeActions';
 
 const initialState = {
