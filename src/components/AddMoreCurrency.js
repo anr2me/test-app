@@ -10,6 +10,8 @@ const StyledDropdown= styled(Dropdown)`
     background-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR)};
     color: ${props => (props.theme.PRIMARY_TEXT_COLOR)};
     border-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR_FAINT)};
+    transition: all 0.5s ease;
+    transition-property: color,background-color,border,font-size;
 
     &.select_currency{
         text-transform: capitalize;
@@ -24,6 +26,8 @@ const StyledDropdown= styled(Dropdown)`
         background-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR)};
         color: ${props => (props.theme.PRIMARY_TEXT_COLOR)};
         border-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR_FAINT)};
+        transition: all 0.5s ease;
+        transition-property: color,background-color,border,font-size;
 
         &:hover{
             background-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR_FAINT)};
@@ -35,6 +39,8 @@ const StyledDropdown= styled(Dropdown)`
         background-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR)};
         color: ${props => (props.theme.PRIMARY_TEXT_COLOR)};
         border-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR_FAINT)};
+        transition: all 0.5s ease;
+        transition-property: color,background-color,border,font-size;
     }
   }
 `;

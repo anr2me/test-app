@@ -7,7 +7,9 @@ const StyledSegment = styled(Segment)`
   &&& {
     border-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR_FAINT)};
     background-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR)};
-    color: ${props => (props.theme.PRIMARY_TEXT_COLOR)};
+	color: ${props => (props.theme.PRIMARY_TEXT_COLOR)};
+	transition: all 0.5s ease;
+    transition-property: color,background-color,border,font-size;
   }
 `;
 
@@ -15,7 +17,9 @@ const StyledLabel = styled(Label)`
 &&& {
 	background-color: transparent;
 	color: ${props => (props.theme.PRIMARY_TEXT_COLOR)};
-    border-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR_FAINT)};
+	border-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR_FAINT)};
+	transition: all 0.5s ease;
+    transition-property: color,background-color,border,font-size;
   
     &.small {
     	font-style: italic;

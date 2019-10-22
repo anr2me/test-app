@@ -16,6 +16,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR)};
     color: ${props => (props.theme.PRIMARY_TEXT_COLOR)};
+    transition: all 0.5s ease;
+    transition-property: color,background-color,border,font-size;
   }
 `
 
@@ -30,6 +32,8 @@ const StyledSegment = styled(Segment)`
     border-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR_FAINT)};
     background-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR)};
     color: ${props => (props.theme.PRIMARY_TEXT_COLOR)};
+    transition: all 0.5s ease;
+    transition-property: color,background-color,border,font-size;
 
     &.app_wrapper{
       width:100%;
@@ -45,6 +49,8 @@ const StyledLabel = styled(Label)`
     background-color: transparent;
     color: ${props => (props.theme.PRIMARY_TEXT_COLOR)};
     border-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR_FAINT)};
+    transition: all 0.5s ease;
+    transition-property: color,background-color,border,font-size;
   
     &.small {
     font-style: italic;
@@ -60,12 +66,16 @@ const StyledInput = styled(Input)`
       background-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR)};
       color: ${props => (props.theme.PRIMARY_TEXT_COLOR)};
       border-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR_FAINT)};
+      transition: all 0.5s ease;
+      transition-property: color,background-color,border,font-size;
     }
 
     &.error>input{
       background-color: ${props => (props.theme.ERROR_BACKGROUND_COLOR)};
       color: ${props => (props.theme.ERROR_TEXT_COLOR)};
       border-color: ${props => (props.theme.ERROR_BACKGROUND_COLOR_FAINT)};
+      transition: all 0.5s ease;
+      transition-property: color,background-color,border,font-size;
     }
   }
 `;
@@ -76,6 +86,8 @@ const StyledCheckbox = styled(Checkbox)`
       background-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR)};
       color: ${props => (props.theme.PRIMARY_TEXT_COLOR)} !important;
       border-color: ${props => (props.theme.PRIMARY_BACKGROUND_COLOR_FAINT)};
+      transition: all 0.5s ease;
+      transition-property: color,background-color,border,font-size;
     }
   }
 `;
